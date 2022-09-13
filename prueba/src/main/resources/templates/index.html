@@ -5,13 +5,27 @@
     <title>Pagina de Inicio</title>
 </head>
 <body>
-    <h1>Inicio</h1>
-    <p th:text="${mensaje}"></p>
-    <p th:text="${saludo}"></p>
-<br>
-    Nombre: <span th:text="${persona.nombre}"></span><br>
-    Apellido: <span th:text="${persona.apellido}"></span><br>
-    Email: <span th:text="${persona.email}"></span><br>
-    Telefono: <span th:text="${persona.telefono}"></span><br>
+<h1>Inicio</h1>
+
+
+<div th:if="${not #lists.isEmpty(personas)}">
+    <table border="1">
+        <tr>
+            <th>Nombre:</th>
+            <th>Apellido:</th>
+            <th>Email:</th>
+            <th>Telefono:</th>
+        </tr>
+        <tr th:each="persona : ${personas}">
+            <td th:text="${persona.nombre}"></td>
+            <td th:text="${persona.apellido}"></td>
+            <td th:text="${persona.email}"></td>
+            <td th:text="${persona.telefono}"></td>
+        </tr>
+    </table>
+</div>
+<div th:if="${#lists.isEmpty(personas)}">
+    <h1>lista vacia</h1>
+</div>
 </body>
 </html>
